@@ -28,59 +28,58 @@ public class DataInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        // Proveri da li već postoje podaci
         if (!authorService.getAllAuthors().isEmpty()) {
             System.out.println("Baza podataka već sadrži podatke. Preskačem inicijalizaciju.");
             return;
         }
-        // Inicijalizuj autore
         Author author1 = new Author();
-        author1.setFirstName("Marko");
-        author1.setLastName("Marulic");
-        author1.setBiography("Hrvatski renesansni pjesnik i pisac");
+        author1.setFirstName("Meša");
+        author1.setLastName("Selimović");
+        author1.setBiography("Bosanski pisac, autor romana Derviš i smrt");
         authorService.saveAuthor(author1);
 
         Author author2 = new Author();
         author2.setFirstName("Ivo");
-        author2.setLastName("Andric");
-        author2.setBiography("Nobelovac, pisac Na Drini cuprija");
+        author2.setLastName("Andrić");
+        author2.setBiography("Nobelovac, pisac Na Drini ćuprija");
         authorService.saveAuthor(author2);
 
         Author author3 = new Author();
-        author3.setFirstName("Miroslav");
-        author3.setLastName("Krleza");
-        author3.setBiography("Hrvatski knjizevnik i intelektualac");
+        author3.setFirstName("Mak");
+        author3.setLastName("Dizdar");
+        author3.setBiography("Bosanski pjesnik, autor Kamenog spavača");
         authorService.saveAuthor(author3);
 
         Author author4 = new Author();
-        author4.setFirstName("Tin");
-        author4.setLastName("Ujevic");
-        author4.setBiography("Hrvatski pjesnik i prevodilac");
+        author4.setFirstName("Skender");
+        author4.setLastName("Kulenović");
+        author4.setBiography("Bosanski pjesnik i dramski pisac");
         authorService.saveAuthor(author4);
 
         Author author5 = new Author();
-        author5.setFirstName("Antun Gustav");
-        author5.setLastName("Matos");
-        author5.setBiography("Hrvatski pjesnik i novinar");
+        author5.setFirstName("Isak");
+        author5.setLastName("Kikić");
+        author5.setBiography("Bosanski pisac i novinar");
         authorService.saveAuthor(author5);
+
         Category category1 = new Category();
         category1.setName("Roman");
-        category1.setDescription("Prozno knjizevno djelo veceg obima");
+        category1.setDescription("Prozno književno djelo većeg obima");
         categoryService.saveCategory(category1);
 
         Category category2 = new Category();
         category2.setName("Poezija");
-        category2.setDescription("Knjizevni rod koji koristi ritam i metaforu");
+        category2.setDescription("Književni rod koji koristi ritam i metaforu");
         categoryService.saveCategory(category2);
 
         Category category3 = new Category();
         category3.setName("Drama");
-        category3.setDescription("Knjizevni rod namijenjen izvodenju na pozornici");
+        category3.setDescription("Književni rod namijenjen izvođenju na pozornici");
         categoryService.saveCategory(category3);
 
         Category category4 = new Category();
         category4.setName("Povijest");
-        category4.setDescription("Knjige koje obraduju povijesne teme");
+        category4.setDescription("Knjige koje obrađuju povijesne teme");
         categoryService.saveCategory(category4);
 
         Category category5 = new Category();
@@ -90,10 +89,11 @@ public class DataInitializer implements CommandLineRunner {
 
         Category category6 = new Category();
         category6.setName("Znanost");
-        category6.setDescription("Knjige o znanstvenim otkricima");
+        category6.setDescription("Knjige o znanstvenim otkrićima");
         categoryService.saveCategory(category6);
+
         Book book1 = new Book();
-        book1.setTitle("Na Drini cuprija");
+        book1.setTitle("Na Drini ćuprija");
         book1.setIsbn("9789530123456");
         book1.setPublishedDate(Date.from(LocalDate.of(1945, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
         book1.setAvailableCopies(5);
@@ -102,41 +102,41 @@ public class DataInitializer implements CommandLineRunner {
         bookService.saveBook(book1);
 
         Book book2 = new Book();
-        book2.setTitle("Judita");
+        book2.setTitle("Derviš i smrt");
         book2.setIsbn("9789530123467");
-        book2.setPublishedDate(Date.from(LocalDate.of(1501, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book2.setPublishedDate(Date.from(LocalDate.of(1966, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
         book2.setAvailableCopies(3);
         book2.setAuthor(author1);
-        book2.setCategory(category2);
+        book2.setCategory(category1);
         bookService.saveBook(book2);
 
         Book book3 = new Book();
-        book3.setTitle("Povratak Filipa Latinovicza");
+        book3.setTitle("Kameni spavač");
         book3.setIsbn("9789530123478");
-        book3.setPublishedDate(Date.from(LocalDate.of(1932, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book3.setPublishedDate(Date.from(LocalDate.of(1966, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
         book3.setAvailableCopies(4);
         book3.setAuthor(author3);
-        book3.setCategory(category1);
+        book3.setCategory(category2);
         bookService.saveBook(book3);
 
         Book book4 = new Book();
-        book4.setTitle("Lelejska gora");
+        book4.setTitle("Stojanka majka Knežopoljka");
         book4.setIsbn("9789530123489");
-        book4.setPublishedDate(Date.from(LocalDate.of(1920, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book4.setPublishedDate(Date.from(LocalDate.of(1945, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
         book4.setAvailableCopies(2);
         book4.setAuthor(author4);
         book4.setCategory(category2);
         bookService.saveBook(book4);
 
         Book book5 = new Book();
-        book5.setTitle("Iverje");
+        book5.setTitle("Mudraci");
         book5.setIsbn("9789530123490");
-        book5.setPublishedDate(Date.from(LocalDate.of(1919, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book5.setPublishedDate(Date.from(LocalDate.of(1936, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
         book5.setAvailableCopies(3);
         book5.setAuthor(author5);
-        book5.setCategory(category2);
+        book5.setCategory(category1);
         bookService.saveBook(book5);
 
-        System.out.println("Baza podataka je uspjesno inicijalizovana sa pocetnim podacima!");
+        System.out.println("Baza podataka je uspješno inicijalizovana sa početnim podacima!");
     }
 }

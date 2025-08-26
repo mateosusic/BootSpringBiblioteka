@@ -1,8 +1,5 @@
 # Sistem upravljanja bibliotekama
 
-**Autor:** Mateo Sušić  
-**Email:** mateo.susic.22@size.ba
-
 Ovo je **Java Spring Boot** web aplikacija za upravljanje bibliotekom. Aplikacija omogućava upravljanje knjigama, korisnicima i zaduženjima, uz integrisanu autentifikaciju i autorizaciju korisnika.
 
 ## Funkcionalnosti
@@ -54,10 +51,6 @@ Pokretanje aplikacije lokalno:
 - **Glavna aplikacija:** http://localhost:8080
 - **H2 konzola:** http://localhost:8080/h2-console
 
-### Default korisnici
-- **Admin:** Mateo1 / password
-- **Korisnik:** Mateo / password
-
 ## Struktura projekta
 
 ```
@@ -73,6 +66,6 @@ src/main/java/org/example/subwp/
 ## Inicijalni podaci
 
 Aplikacija automatski učitava početne podatke o:
-- Hrvatskim autorima (Marulić, Andrić, Krleža, Ujević, Matos)
+- Bosanskim autorima (Andrić, Selimović, Kikić, Dizdar, Kulenović)
 - Kategorijama knjiga (Roman, Poezija, Drama, Povijest, Filozofija, Znanost)
-- Knjigama sa hrvatskim autorima
+- Knjigama sa bosanskim autorima
