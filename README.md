@@ -1,38 +1,42 @@
-##Bibliotekarski sistem – Spring Boot Web Aplikacija
+# Sistem upravljanja bibliotekama
 
-Ovo je **Java Spring Boot** web aplikacija za upravljanje bibliotekom.  
-Aplikacija omogućava upravljanje knjigama, korisnicima i posudbama, uz integrisanu autentifikaciju i autorizaciju korisnika.
+**Autor:** Mateo Sušić  
+**Email:** mateo.susic.22@size.ba
+
+Ovo je **Java Spring Boot** web aplikacija za upravljanje bibliotekom. Aplikacija omogućava upravljanje knjigama, korisnicima i zaduženjima, uz integrisanu autentifikaciju i autorizaciju korisnika.
 
 ## Funkcionalnosti
 
-- **Upravljanje knjigama:** Dodavanje, pregled, ažuriranje i brisanje knjiga.
-- **Upravljanje korisnicima:** Registracija korisnika, dodjela uloga (admin/korisnik).
-- **Posudbe i rezervacije:** Evidencija posudbi knjiga i status vraćanja.
-- **Validacija formi:** Polja validirana pomoću anotacija (@NotNull, @Size, @Email...).
-- **Autentifikacija i autorizacija:** Prijava/odjava korisnika putem Spring Security.
+- **Upravljanje knjigama:** Dodavanje, pregled, ažuriranje i brisanje knjiga
+- **Upravljanje autorima:** Dodavanje i upravljanje autorima knjiga
+- **Upravljanje kategorijama:** Organizacija knjiga po kategorijama
+- **Upravljanje korisnicima:** Registracija korisnika, dodjela uloga (admin/korisnik)
+- **Zaduženja:** Evidencija zaduženja knjiga i status vraćanja
+- **Validacija formi:** Polja validirana pomoću anotacija (@NotNull, @Size, @Email...)
+- **Autentifikacija i autorizacija:** Prijava/odjava korisnika putem Spring Security
 - **Uloge korisnika:**
-    - **Admin:** upravlja knjigama, korisnicima i posudbama.
-    - **Korisnik:** može pretraživati i rezervisati knjige.
-- **Pregled dostupnih knjiga:** Pretraživanje po nazivu, autoru ili žanru.
-- **Thymeleaf predlošci:** Dinamičko generisanje stranica (lista knjiga, forma za registraciju, itd.).
-## ️ Tehnologije
+  - **Admin:** upravlja knjigama, autorima, kategorijama, korisnicima i zaduženjima
+  - **Korisnik:** može pretraživati knjige i zaduživati ih
+- **Pregled dostupnih knjiga:** Pretraživanje po naslovu
+- **Thymeleaf predlošci:** Dinamičko generisanje stranica
+
+## Tehnologije
 
 ### Backend
-- Java Spring Boot
+- Java Spring Boot 3.3.5
 - Spring MVC
 - Spring Data JPA
 - Spring Security
 - Hibernate
 
 ### Baza podataka
-- H2 (in-memory testna baza)
-- MySQL  (poteskoce)
+- H2 (in-memory baza podataka)
 
 ### Frontend
 - Thymeleaf (HTML template engine)
-- Bootstrap & Custom CSS
+- Custom CSS
 
-##  Pokretanje aplikacije
+## Pokretanje aplikacije
 
 ### Potrebno instalirati
 - Java JDK 17+
@@ -40,7 +44,35 @@ Aplikacija omogućava upravljanje knjigama, korisnicima i posudbama, uz integris
 
 ### Build i Run
 
-Pokretanje aplikacije lokalno u bash-u:
+Pokretanje aplikacije lokalno:
 
 ```bash
-.\mvnw.cmd clean spring-boot:run -DskipTests
+.\mvnw.cmd spring-boot:run
+```
+
+### Pristup aplikaciji
+- **Glavna aplikacija:** http://localhost:8080
+- **H2 konzola:** http://localhost:8080/h2-console
+
+### Default korisnici
+- **Admin:** Mateo1 / password
+- **Korisnik:** Mateo / password
+
+## Struktura projekta
+
+```
+src/main/java/org/example/subwp/
+├── controller/     # Spring MVC kontroleri
+├── model/         # JPA entiteti
+├── repository/    # Spring Data JPA repozitoriji
+├── service/       # Business logika
+├── security/      # Spring Security konfiguracija
+└── validation/    # Custom validatori
+```
+
+## Inicijalni podaci
+
+Aplikacija automatski učitava početne podatke o:
+- Hrvatskim autorima (Marulić, Andrić, Krleža, Ujević, Matos)
+- Kategorijama knjiga (Roman, Poezija, Drama, Povijest, Filozofija, Znanost)
+- Knjigama sa hrvatskim autorima
