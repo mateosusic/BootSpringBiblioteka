@@ -74,21 +74,16 @@ cd BootSpringBiblioteka
 # Windows
 .\mvnw.cmd spring-boot:run
 
-# Linux/Mac
-./mvnw spring-boot:run
-```
+
 
 ### 3. Pristup aplikaciji
 - **Glavna aplikacija:** http://localhost:8080
 - **H2 konzola:** http://localhost:8080/h2-console
-  - JDBC URL: `jdbc:h2:mem:testdb`
-  - Username: `sa`
-  - Password: `password`
 
 ## 📁 Struktura projekta
 
 ```
-src/main/java/org/example/subwp/
+src/main/java/org/example/BootSpringBiblioteka/
 ├── controller/          # Spring MVC kontroleri
 │   ├── BookController.java
 │   ├── AuthorController.java
@@ -121,28 +116,6 @@ src/main/java/org/example/subwp/
     ├── UniqueISBN.java
     └── UniqueISBNValidator.java
 ```
-
-## 🎯 Inicijalni podaci
-
-Aplikacija automatski učitava početne podatke:
-
-### 📚 Bosanski autori
-- Ivo Andrić
-- Meša Selimović
-- Branko Ćopić
-- Mak Dizdar
-- Skender Kulenović
-
-### 📂 Kategorije knjiga
-- Roman
-- Poezija
-- Drama
-- Povijest
-- Filozofija
-- Znanost
-
-### 📖 Knjige
-- Različite knjige bosanskih autora s inicijalnim podacima
 
 ## 🔧 Konfiguracija
 
