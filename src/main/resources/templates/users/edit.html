@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Uredi Korisnika</title>
+  <link rel="stylesheet" th:href="@{/css/CreatePages.css}">
+</head>
+<body>
+<div sec:authorize="hasRole('ADMIN')" class="navbar">
+  <span class="logo">Sistem upravljanja bibliotekama</span>
+  <a th:href="@{/authors}">Autori</a>
+  <a th:href="@{/categories}">Kategorije</a>
+  <a th:href="@{/books}">Knjige</a>
+  <a th:href="@{/loans}">Zaduženja</a>
+  <a th:href="@{/logout}" class="logout-btn">Odjava</a>
+</div>
+<div class="container">
+<h1>Uredi Korisnika</h1>
+
+<form th:action="@{'/users/' + ${user.id}}" th:object="${user}" method="post">
+  <div>
+    <label for="username">Korisničko Ime:</label>
+    <input type="text" id="username" th:field="*{username}" />
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+  </div>
+  <div>
+    <label for="password">Lozinka:</label>
+
+    <input type="password" id="password" th:field="*{password}" value="********" placeholder="********" />
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+  </div>
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" th:field="*{email}" />
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+  </div>
+  <div>
+    <label for="firstName">Ime:</label>
+    <input type="text" id="firstName" th:field="*{firstName}" />
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+  </div>
+  <div>
+    <label for="lastName">Prezime:</label>
+    <input type="text" id="lastName" th:field="*{lastName}" />
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+  </div>
+  <div>
+    <label for="role">Uloga:</label>
+    <select id="role" th:field="*{role}">
+      <option value="USER" th:selected="${user.role} == 'USER'">USER</option>
+      <option value="ADMIN" th:selected="${user.role} == 'ADMIN'">ADMIN</option>
+    </select>
+    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+  </div>
+  <div>
+    <button type="submit">Ažuriraj</button>
+  </div>
+</form>
+<a th:href="@{/users}">Nazad na listu</a>
+</div>
+</body>
+</html>

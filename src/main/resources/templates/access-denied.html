@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pristup Odbijen</title>
+  <link rel="stylesheet" th:href="@{/css/ListPages.css}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+</head>
+<body>
+<div sec:authorize="hasRole('ADMIN')" class="navbar">
+  <span class="logo">Sistem upravljanja bibliotekama</span>
+  <a th:href="@{/authors}">Autori</a>
+  <a th:href="@{/categories}">Kategorije</a>
+  <a th:href="@{/books}">Knjige</a>
+  <a th:href="@{/loans}">Zaduženja</a>
+  <a th:href="@{/logout}" class="logout-btn">Odjava</a>
+</div>
+<div sec:authorize="hasRole('USER')" class="navbar">
+  <span class="logo">Sistem upravljanja bibliotekama</span>
+  <a th:href="@{/loans}">Moja Zaduženja</a>
+  <a th:href="@{/logout}" class="logout-btn">Odjava</a>
+</div>
+<div class="wrapper">
+  <div class="title"><span>Pristup Odbijen</span></div>
+
+  <div class="error-message">
+    <h2>Nemate dozvolu za pristup ovoj stranici!</h2>
+  </div>
+
+  <div class="button-container">
+    <a th:href="@{/loans}" class="btn">Nazad na početnu</a>
+    <a th:href="@{/logout}" class="btn">Odjava</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+package org.example.subwp;
+
+import org.example.subwp.model.Author;
+import org.example.subwp.model.Book;
+import org.example.subwp.model.Category;
+import org.example.subwp.service.AuthorService;
+import org.example.subwp.service.BookService;
+import org.example.subwp.service.CategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
+@Component
+public class DataInitializer implements CommandLineRunner {
+
+    @Autowired
+    private AuthorService authorService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private BookService bookService;
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Proveri da li već postoje podaci
+        if (!authorService.getAllAuthors().isEmpty()) {
+            System.out.println("Baza podataka već sadrži podatke. Preskačem inicijalizaciju.");
+            return;
+        }
+        // Inicijalizuj autore
+        Author author1 = new Author();
+        author1.setFirstName("Marko");
+        author1.setLastName("Marulic");
+        author1.setBiography("Hrvatski renesansni pjesnik i pisac");
+        authorService.saveAuthor(author1);
+
+        Author author2 = new Author();
+        author2.setFirstName("Ivo");
+        author2.setLastName("Andric");
+        author2.setBiography("Nobelovac, pisac Na Drini cuprija");
+        authorService.saveAuthor(author2);
+
+        Author author3 = new Author();
+        author3.setFirstName("Miroslav");
+        author3.setLastName("Krleza");
+        author3.setBiography("Hrvatski knjizevnik i intelektualac");
+        authorService.saveAuthor(author3);
+
+        Author author4 = new Author();
+        author4.setFirstName("Tin");
+        author4.setLastName("Ujevic");
+        author4.setBiography("Hrvatski pjesnik i prevodilac");
+        authorService.saveAuthor(author4);
+
+        Author author5 = new Author();
+        author5.setFirstName("Antun Gustav");
+        author5.setLastName("Matos");
+        author5.setBiography("Hrvatski pjesnik i novinar");
+        authorService.saveAuthor(author5);
+        Category category1 = new Category();
+        category1.setName("Roman");
+        category1.setDescription("Prozno knjizevno djelo veceg obima");
+        categoryService.saveCategory(category1);
+
+        Category category2 = new Category();
+        category2.setName("Poezija");
+        category2.setDescription("Knjizevni rod koji koristi ritam i metaforu");
+        categoryService.saveCategory(category2);
+
+        Category category3 = new Category();
+        category3.setName("Drama");
+        category3.setDescription("Knjizevni rod namijenjen izvodenju na pozornici");
+        categoryService.saveCategory(category3);
+
+        Category category4 = new Category();
+        category4.setName("Povijest");
+        category4.setDescription("Knjige koje obraduju povijesne teme");
+        categoryService.saveCategory(category4);
+
+        Category category5 = new Category();
+        category5.setName("Filozofija");
+        category5.setDescription("Knjige o filozofskim pitanjima");
+        categoryService.saveCategory(category5);
+
+        Category category6 = new Category();
+        category6.setName("Znanost");
+        category6.setDescription("Knjige o znanstvenim otkricima");
+        categoryService.saveCategory(category6);
+        Book book1 = new Book();
+        book1.setTitle("Na Drini cuprija");
+        book1.setIsbn("9789530123456");
+        book1.setPublishedDate(Date.from(LocalDate.of(1945, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book1.setAvailableCopies(5);
+        book1.setAuthor(author2);
+        book1.setCategory(category1);
+        bookService.saveBook(book1);
+
+        Book book2 = new Book();
+        book2.setTitle("Judita");
+        book2.setIsbn("9789530123467");
+        book2.setPublishedDate(Date.from(LocalDate.of(1501, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book2.setAvailableCopies(3);
+        book2.setAuthor(author1);
+        book2.setCategory(category2);
+        bookService.saveBook(book2);
+
+        Book book3 = new Book();
+        book3.setTitle("Povratak Filipa Latinovicza");
+        book3.setIsbn("9789530123478");
+        book3.setPublishedDate(Date.from(LocalDate.of(1932, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book3.setAvailableCopies(4);
+        book3.setAuthor(author3);
+        book3.setCategory(category1);
+        bookService.saveBook(book3);
+
+        Book book4 = new Book();
+        book4.setTitle("Lelejska gora");
+        book4.setIsbn("9789530123489");
+        book4.setPublishedDate(Date.from(LocalDate.of(1920, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book4.setAvailableCopies(2);
+        book4.setAuthor(author4);
+        book4.setCategory(category2);
+        bookService.saveBook(book4);
+
+        Book book5 = new Book();
+        book5.setTitle("Iverje");
+        book5.setIsbn("9789530123490");
+        book5.setPublishedDate(Date.from(LocalDate.of(1919, 1, 1).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        book5.setAvailableCopies(3);
+        book5.setAuthor(author5);
+        book5.setCategory(category2);
+        bookService.saveBook(book5);
+
+        System.out.println("Baza podataka je uspjesno inicijalizovana sa pocetnim podacima!");
+    }
+}

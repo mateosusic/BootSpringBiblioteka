@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Dodaj Knjigu</title>
+    <link rel="stylesheet" th:href="@{/css/CreatePages.css}">
+</head>
+<body>
+<div sec:authorize="hasRole('ADMIN')" class="navbar">
+  <span class="logo">Sistem upravljanja bibliotekama</span>
+  <a th:href="@{/authors}">Autori</a>
+  <a th:href="@{/categories}">Kategorije</a>
+  <a th:href="@{/books}">Knjige</a>
+  <a th:href="@{/loans}">Zaduženja</a>
+  <a th:href="@{/logout}" class="logout-btn">Odjava</a>
+</div>
+<div class="container">
+    <h1>Dodaj Knjigu</h1>
+    
+    <div th:if="${error}" class="error-message" style="color: red; margin-bottom: 20px; text-align: center;">
+        <p th:text="${error}"></p>
+    </div>
+    
+    <form th:action="@{/books/new}" method="post" class="book-form">
+
+        <div class="form-group">
+            <label for="title">Naslov:</label>
+            <input type="text" id="title" name="title" placeholder="Unesite naslov knjige" required />
+        </div>
+
+        <div class="form-group">
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" required />
+        </div>
+
+        <div class="form-group">
+            <label for="publishedDate">Datum Izdavanja:</label>
+            <input type="date" id="publishedDate" name="publishedDate" />
+        </div>
+
+        <div class="form-group">
+            <label for="author">Autor:</label>
+            <select id="author" name="authorId" required>
+                <option value="" disabled selected>Izaberite autora</option>
+                <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.firstName} + ' ' + ${author.lastName}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="category">Kategorija:</label>
+            <select id="category" name="categoryId" required>
+                <option value="" disabled selected>Izaberite kategoriju</option>
+                <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="availableCopies">Dostupni Primjerci:</label>
+            <input type="number" id="availableCopies" name="availableCopies" min="0" required />
+        </div>
+
+        <div class="form-actions">
+            <a th:href="@{/books}" class="back-button">Nazad na listu</a>
+            <button type="submit" class="submit-button">Spremi</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

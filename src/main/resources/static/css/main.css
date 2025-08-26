@@ -1,0 +1,83 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #1a1a2e;
+    color: #ffffff;
+}
+
+h1 {
+    color: #4a90e2;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #16213e;
+}
+
+table, th, td {
+    border: 1px solid #0f3460;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #0f3460;
+    color: #ffffff;
+}
+
+a {
+    margin-right: 10px;
+    text-decoration: none;
+    color: #4a90e2;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #7bb3f0;
+}
+
+form div {
+    margin-bottom: 10px;
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+    color: #4a90e2;
+}
+
+input, select {
+    padding: 5px;
+    width: 300px;
+    background-color: #16213e;
+    color: #ffffff;
+    border: 1px solid #0f3460;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0f3460;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4a90e2;
+}
+
+span {
+    color: #ff6b6b;
+    margin-left: 10px;
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>Lista Kategorija</title>
+  <link rel="stylesheet" th:href="@{/css/ListPages.css}">
+</head>
+<body>
+<div sec:authorize="hasRole('ADMIN')" class="navbar">
+  <span class="logo">Sistem upravljanja bibliotekama</span>
+  <a th:href="@{/authors}">Autori</a>
+  <a th:href="@{/categories}">Kategorije</a>
+  <a th:href="@{/books}">Knjige</a>
+  <a th:href="@{/loans}">Zaduženja</a>
+  <a th:href="@{/logout}" class="logout-btn">Odjava</a>
+</div>
+<div class="container">
+  <h1>Lista Kategorija</h1>
+  <a class="add-button" th:href="@{/categories/new}">Dodaj Novu Kategoriju</a>
+  <table>
+    <thead>
+    <tr>
+      <th>Naziv</th>
+      <th>Opis</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${categories.isEmpty()}" class="centered">
+      <td colspan="3">Nema dostupnih kategorija</td>
+    </tr>
+    <tr th:each="category : ${categories}">
+      <td th:text="${category.name}">Naziv</td>
+      <td th:text="${category.description}">Opis</td>
+      <td class="action-buttons">
+        <a class="edit-button" th:href="@{'/categories/' + ${category.id} + '/edit'}">Uredi</a>
+        <form th:action="@{'/categories/' + ${category.id} + '/delete'}" method="get"
+              onsubmit="return confirm('Da li ste sigurni da želite obrisati ovu kategoriju?');" class="inline-form">
+          <button type="submit" class="delete-button">Obriši</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div id="messageModal" class="modal" th:if="${errorMessage != null} or ${successMessage != null}">
+  <div class="modal-content">
+    <span class="close-button" onclick="closeModal()">&times;</span>
+    <p th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></p>
+    <p th:if="${successMessage}" class="success-message" th:text="${successMessage}"></p>
+  </div>
+</div>
+<script>
+  function closeModal() {
+    document.getElementById('messageModal').style.display = 'none';
+  }
+
+  window.onload = function() {
+    var modal = document.getElementById('messageModal');
+    if (modal) {
+      modal.style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>

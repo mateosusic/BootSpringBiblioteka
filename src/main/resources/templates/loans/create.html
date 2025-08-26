@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Dodaj Zaduženje</title>
+    <link rel="stylesheet" th:href="@{/css/CreatePages.css}">
+</head>
+<body>
+<div sec:authorize="hasRole('ADMIN')" class="navbar">
+  <span class="logo">Sistem upravljanja bibliotekama</span>
+  <a th:href="@{/authors}">Autori</a>
+  <a th:href="@{/categories}">Kategorije</a>
+  <a th:href="@{/books}">Knjige</a>
+  <a th:href="@{/loans}">Zaduženja</a>
+  <a th:href="@{/logout}" class="logout-btn">Odjava</a>
+</div>
+<div sec:authorize="hasRole('USER')" class="navbar">
+  <span class="logo">Sistem upravljanja bibliotekama</span>
+  <a th:href="@{/loans}">Moja Zaduženja</a>
+  <a th:href="@{/logout}" class="logout-btn">Odjava</a>
+</div>
+<div class="container">
+      <h1>Dodaj Zaduženje</h1>
+      
+      <div th:if="${error}" class="error-message" style="color: red; margin-bottom: 20px; text-align: center;">
+          <p th:text="${error}"></p>
+      </div>
+      
+  <form th:action="@{/loans}" th:object="${loan}" method="post" class="loan-form">
+    <div class="form-group">
+      <label for="bookTitle">Naslov Knjige:</label>
+      <select id="bookTitle" name="bookTitle" required>
+        <option value="">Odaberite knjigu</option>
+        <option th:each="book : ${books}" 
+                th:value="${book.title}" 
+                th:text="${book.title}"></option>
+      </select>
+      <span class="error-message" th:if="${#fields.hasErrors('book')}" th:errors="*{book}"></span>
+    </div>
+    <div class="form-group">
+      <label for="username">Korisnik:</label>
+      <input type="text" id="username" th:value="${#authentication.name}" readonly />
+    </div>
+    <div class="form-group">
+      <label for="loanDate">Datum Iznajmljivanja:</label>
+      <input type="date" id="loanDate" th:field="*{loanDate}" readonly />
+      <span class="error-message" th:if="${#fields.hasErrors('loanDate')}" th:errors="*{loanDate}"></span>
+    </div>
+    <div class="form-group">
+      <label for="returnDate">Datum Povratka:</label>
+      <input type="date" id="returnDate" th:field="*{returnDate}" />
+      <span class="error-message" th:if="${#fields.hasErrors('returnDate')}" th:errors="*{returnDate}"></span>
+    </div>
+    <div class="form-actions">
+      <a th:href="@{/loans}" class="back-button">Nazad na listu</a>
+      <button type="submit" class="submit-button">Spremi</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
